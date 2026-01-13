@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, PenTool, Home, Info, BookOpen, Mail, ChevronRight,  } from "lucide-react";
+import { Menu, PenTool, Home, Info, BookOpen, Mail, ChevronRight, } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -92,11 +92,16 @@ const Navbar = () => {
             <span className="text-xl font-bold tracking-tight text-foreground">Blog App</span>
           </Link>
 
+
           <Sheet open={open} onOpenChange={setOpen}>
+
             <SheetTrigger asChild>
+
               <Button variant="ghost" size="icon">
                 <Menu className="size-6 text-foreground" />
               </Button>
+
+
             </SheetTrigger>
             <SheetContent side="right" className="w-[85%] pr-0 bg-background">
               <SheetHeader className="text-left pr-6">
@@ -105,6 +110,8 @@ const Navbar = () => {
                   <span className="font-bold text-foreground">Blog App</span>
                 </SheetTitle>
               </SheetHeader>
+
+
 
               <div className="flex flex-col h-[calc(100vh-150px)] justify-between pr-6">
                 <div className="flex flex-col gap-2">
@@ -130,7 +137,10 @@ const Navbar = () => {
                   })}
                 </div>
 
+
+
                 <div className="flex flex-col gap-3 pb-6 border-t pt-6">
+
                   <Button asChild variant="outline" className="h-12 rounded-2xl" onClick={() => setOpen(false)}>
                     <Link href="/login">Login</Link>
                   </Button>

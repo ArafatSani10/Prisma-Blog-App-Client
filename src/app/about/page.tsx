@@ -1,11 +1,12 @@
-import React from 'react';
 
-const AboutPage = () => {
+export const dynamic = "force-dynamic"
+
+export default async function AboutPage() {
+
+    await new Promise((resolve) => setTimeout(resolve, 4000))
     return (
         <div>
-            <h1>This is a about page...</h1>
+            <h1>This is about page here...</h1>
         </div>
-    );
-};
-
-export default AboutPage;
+    )
+}
