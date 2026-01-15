@@ -37,13 +37,13 @@ const data = {
   ],
   navMain: [
     {
-      title: "Write Blog",
-      url: "/dashboard/write-blog",
+      title: "Admin Dashboard",
+      url: "/admin-dashboard",
       icon: PenSquare,
     },
     {
-      title: "Analytics",
-      url: "/dashboard/analytics",
+      title: "User Dashboard",
+      url: "/dashboard",
       icon: BarChart3,
     },
   ],
