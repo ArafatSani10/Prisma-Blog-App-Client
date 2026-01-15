@@ -23,13 +23,11 @@ import {
   SidebarMenuItem,
   SidebarGroup,
 } from "@/components/ui/sidebar"
+import { adminRoutes } from "@/routes/adminRoutes"
+import { userRoutes } from "@/routes/userRoutes"
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
+  
   teams: [
     { name: "Acme Inc", logo: GalleryVerticalEnd, plan: "Enterprise" },
     { name: "Acme Corp.", logo: AudioWaveform, plan: "Startup" },
@@ -49,8 +47,31 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+   user, 
+    ...props
+   }:
+    { user:{role:string} &  React.ComponentProps<typeof Sidebar>}) {
+
+
+      let routes = [];
+      switch (user.role) {
+        case "admin":
+          routes=adminRoutes
+          
+          break;
+        case "user":
+          routes=userRoutes
+          
+          break;
+      
+        default:
+          routes =[];
+          break;
+      }
   return (
+
+    
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
@@ -59,11 +80,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {data.navMain.map((item) => (
+            {routes.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild tooltip={item.title}>
                   <Link href={item.url}>
-                    <item.icon />
                     <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
@@ -73,9 +93,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      
       <SidebarRail />
     </Sidebar>
   )
