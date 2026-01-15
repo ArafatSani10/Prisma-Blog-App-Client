@@ -1,9 +1,12 @@
+import { ChartArea, LayoutDashboard, Rss, } from "lucide-react"
+import { Route } from "@/types"
 
-
-
-export const userRoutes = [
+export const userRoutes: Route[] = [
     {
-        title: "Create Blog",
-        url: "/create-blog",
-    }
-];
+        title: "Overview",
+        item: [
+            { title: "Create Blog", url: "/create-blog", icon: Rss },
+            { title: "Analytics", url: "/analytics", icon: ChartArea },
+        ],
+    },
+]
