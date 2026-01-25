@@ -1,8 +1,7 @@
 export interface Route {
   title: string;
-  item: {
+  items: {
     title: string;
     url: string;
-    icon?: any;
   }[];
 }

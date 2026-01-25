@@ -22,7 +22,7 @@ const Navbar = () => {
   const menu = [
     { title: "Home", url: "/", icon: Home },
     { title: "About", url: "/about", icon: Info },
-    { title: "Blogs", url: "/blog", icon: BookOpen },
+    { title: "Blogs", url: "/blogs", icon: BookOpen },
     { title: "Contact", url: "/contact", icon: Mail },
   ];
 
