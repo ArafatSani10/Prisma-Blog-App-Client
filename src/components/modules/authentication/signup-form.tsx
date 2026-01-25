@@ -10,9 +10,11 @@ import {
 } from "@/components/ui/card"
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { authClient } from "@/lib/auth-client"
 
 
 import { useForm } from "@tanstack/react-form"
+import { toast } from "sonner"
 import * as z from "zod";
 
 const formSchema = z.object({
@@ -34,7 +36,20 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
 
     onSubmit: async ({ value }) => {
-      console.log(value);
+      const toastId = toast.loading("creating user...")
+      try {
+        const { data, error } = await authClient.signUp.email(value);
+        if (error) {
+          toast.error(error.message, { id: toastId });
+          return;
+        }
+
+        toast.success("User created successfully", {id:toastId});
+
+      }
+      catch (err) {
+       toast.error("Something went wrong.Please try again", {id:toastId})
+      }
     }
   })
   return (
@@ -81,7 +96,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
 
               }} />
-              <form.Field name="email"
+            <form.Field name="email"
               children={(field) => {
                 const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
                 return (
@@ -110,7 +125,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
 
               }} />
-              <form.Field name="password"
+            <form.Field name="password"
               children={(field) => {
                 const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
                 return (
